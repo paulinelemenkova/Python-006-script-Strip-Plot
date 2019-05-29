@@ -1,0 +1,1 @@
+# Python-006-script-Strip-Plot
