@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[24]:
-
-
+#
 import seaborn as sb
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
 import os
+#
 os.chdir('/Users/pauline/Documents/Python')
 dfM = pd.read_csv("Tab-GeomorphPhil.csv")
 sb.set_style('darkgrid')
-
+#
 df = dfM.melt(id_vars=['profile'], 
               value_vars=['geol_c', 'geol_p', 'geol_vb', 'geol_a', 'geol_smi', 'geol_pb', 'geol_m'],
               var_name='Geology', value_name='Nr. of observation points')
@@ -28,10 +26,3 @@ plt.subplots_adjust(bottom=0.15,top=0.85, right=0.80)
 plt.annotate('B', xy=(0.03, .9), xycoords="axes fraction", fontsize=18,
           bbox=dict(boxstyle='round, pad=0.3', fc='w', edgecolor='grey', linewidth=1, alpha=0.9))
 plt.show()
-
-
-# In[ ]:
-
-
-
-
