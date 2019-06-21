@@ -4,6 +4,8 @@ import os
 import pandas as pd
 import matplotlib.pylab as pylab
 from matplotlib import pyplot as plt
+import matplotlib.artist as martist
+from matplotlib.offsetbox import AnchoredText
 import seaborn as sb
 
 sb.set_style('darkgrid')
@@ -37,6 +39,12 @@ params = {#'figure.figsize': (10, 7),
                             }
 pylab.rcParams.update(params)
 
+def add_at(ax, t, loc=1):
+    fp = dict(size=11)
+    _at = AnchoredText(t, loc=loc, prop=fp)
+    ax.add_artist(_at)
+    return _at
+
 # define figure
 fig = plt.figure(figsize=(10.0, 6.0), dpi=300)
 fig.suptitle('Geological parameters, Mariana Trench',
@@ -50,6 +58,7 @@ sb.stripplot(x='Plates', y='sedim_thick', data=df1,
 plt.title('sediment thickness')
 plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
            mode='expand', title='profiles:')
+add_at(ax, "A")
 
 # subplot 2
 ax = fig.add_subplot(222)
@@ -59,6 +68,7 @@ sb.stripplot(x='Plates', y='slope_angle', data=df2,
 plt.title('slope angle degree')
 plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
            mode='expand', title='profiles:')
+add_at(ax, "B")
 
 # subplot 3
 ax = fig.add_subplot(223)
@@ -67,8 +77,8 @@ sb.stripplot(x='Plates', y='Mean', data=df3,
              )
 plt.title('mean depth values')
 plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
-           mode='expand', title='profiles:'
-           )
+           mode='expand', title='profiles:')
+add_at(ax, "C")
 
 # subplot 4
 ax = fig.add_subplot(224)
@@ -77,8 +87,9 @@ sb.stripplot(x='Plates', y='Min', data=df4,
              )
 plt.title('max depth values')
 plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
-           mode='expand', title='profiles:'
-           )
+           mode='expand', title='profiles:')
+add_at(ax, "D")
+
 plt.subplots_adjust(top=0.85, bottom=0.15,
                     left=0.10, right=0.90,
                     hspace=0.25, wspace=0.2
