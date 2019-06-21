@@ -24,20 +24,22 @@ df2 = dfM.melt(id_vars=['profile'],
                var_name='Plates', value_name='Nr. of observation points'
                )
 
-params = {'legend.fontsize': 7,
-        'figure.figsize': (10, 5),
+params = {'figure.figsize': (10, 5),
+    'figure.dpi': 300,
+        'figure.titlesize': 16,
             'axes.labelsize': 8,
                 'font.family': 'Palatino',
-                    'legend.markerscale': .4,
-                        'legend.borderaxespad': .5,
-                            'legend.labelspacing': .1,
-                    }
+                    'legend.fontsize': 7,
+                        'legend.markerscale': .4,
+                            'legend.borderaxespad': .5,
+                                'legend.labelspacing': .1,
+                                    
+                                }
 pylab.rcParams.update(params)
 
 fig = plt.figure(figsize=(10.0, 4.0), dpi=300)
 fig.suptitle('Strip plot of sample distribution for geological parameters, Philippine archipelago',
-             fontsize=12, x=0.5, y=0.97)
-
+             x=0.5, y=0.97)
 
 def add_at(ax, t, loc=2):
     fp = dict(size=11)
@@ -75,5 +77,5 @@ plt.subplots_adjust(top=0.85, bottom=0.15,
                     left=0.10, right=0.90,
                     hspace=0.25, wspace=0.35
                     )
-fig.savefig('plot_StripPhil.png', dpi=300)
+fig.savefig('plot_StripPhil.png')
 plt.show()
