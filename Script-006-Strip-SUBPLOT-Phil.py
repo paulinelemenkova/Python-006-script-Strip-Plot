@@ -33,8 +33,8 @@ params = {'figure.figsize': (10, 5),
                         'legend.markerscale': .4,
                             'legend.borderaxespad': .5,
                                 'legend.labelspacing': .1,
-                                    
-                                }
+                                    'legend.loc': 'best',
+                                    }
 pylab.rcParams.update(params)
 
 fig = plt.figure(figsize=(10.0, 4.0), dpi=300)
@@ -53,7 +53,7 @@ sb.stripplot(x='Geology', y='Nr. of observation points',
              hue = 'profile', palette='tab20b', data=df1, jitter=True)
 plt.title('Geology and Lithology')
 plt.legend(bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
-           loc=1, ncol=1, mode="expand"
+           ncol=1, mode="expand"
            )
 plt.xlabel('Lithology rock type and geology')
 plt.xticks(np.arange(7), ('C', 'P', 'Vb', 'A', 'Smi', 'Pb', 'M'))
@@ -65,7 +65,7 @@ sb.stripplot(x='Plates', y='Nr. of observation points',
              hue = 'profile', palette='tab20', data=df2, jitter=True)
 plt.title('Sunda Plate and Philippine Plate')
 plt.legend(bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
-           loc=1, ncol=1, mode="expand"
+           ncol=1, mode="expand"
            )
 plt.xlabel('Tectonic Plates')
 plt.xticks(np.arange(2), ('Philippine Plate', 'Sunda Plate'))
@@ -77,5 +77,5 @@ plt.subplots_adjust(top=0.85, bottom=0.15,
                     left=0.10, right=0.90,
                     hspace=0.25, wspace=0.35
                     )
-fig.savefig('plot_StripPhil.png')
+fig.savefig('plot_StripPhil.png', dpi=300)
 plt.show()
