@@ -26,14 +26,17 @@ df2 = dfM.melt(id_vars=['profile'],
 
 params = {'legend.fontsize': 7,
         'figure.figsize': (10, 5),
-        'axes.labelsize': 8,
-        'font.family': 'Palatino'
-        }
+            'axes.labelsize': 8,
+                'font.family': 'Palatino',
+                    'legend.markerscale': .4,
+                        'legend.borderaxespad': .5,
+                            'legend.labelspacing': .1,
+                    }
 pylab.rcParams.update(params)
 
 fig = plt.figure(figsize=(10.0, 4.0), dpi=300)
-fig.suptitle('Strip plot of sample distribution for geological parameters, \
-             Philippine archipelago', fontsize=12, x=0.5, y=0.97)
+fig.suptitle('Strip plot of sample distribution for geological parameters, Philippine archipelago',
+             fontsize=12, x=0.5, y=0.97)
 
 
 def add_at(ax, t, loc=2):
@@ -48,8 +51,8 @@ sb.stripplot(x='Geology', y='Nr. of observation points',
              hue = 'profile', palette='tab20b', data=df1, jitter=True)
 plt.title('Geology and Lithology')
 plt.legend(bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
-           loc="upper right", ncol=1, mode="expand",
-           borderaxespad=0., markerscale=.4, labelspacing=.2)
+           loc=1, ncol=1, mode="expand"
+           )
 plt.xlabel('Lithology rock type and geology')
 plt.xticks(np.arange(7), ('C', 'P', 'Vb', 'A', 'Smi', 'Pb', 'M'))
 add_at(ax, "A")
@@ -60,8 +63,8 @@ sb.stripplot(x='Plates', y='Nr. of observation points',
              hue = 'profile', palette='tab20', data=df2, jitter=True)
 plt.title('Sunda Plate and Philippine Plate')
 plt.legend(bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
-           loc="upper right", ncol=1, mode="expand",
-           borderaxespad=0., markerscale=.4, labelspacing=.2)
+           loc=1, ncol=1, mode="expand"
+           )
 plt.xlabel('Tectonic Plates')
 plt.xticks(np.arange(2), ('Philippine Plate', 'Sunda Plate'))
 add_at(ax, "B")
