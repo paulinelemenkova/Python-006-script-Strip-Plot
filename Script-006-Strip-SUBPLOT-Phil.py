@@ -4,6 +4,8 @@ import os
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+import matplotlib.artist as martist
+from matplotlib.offsetbox import AnchoredText
 import seaborn as sb
 
 os.chdir('/Users/pauline/Documents/Python')
@@ -35,10 +37,9 @@ def add_at(ax, t, loc=2):
 # subplot 1
 ax = fig.add_subplot(121)
 sb.stripplot(x='Geology', y='Nr. of observation points',
-             hue = 'profile', palette='tab20b', data=df1, jitter=True
-             )
+             hue = 'profile', palette='tab20b', data=df1, jitter=True)
 plt.title('Geology and lithology', fontsize=10, fontfamily='serif')
-plt.legend(title='Profiles', title_fontsize=8,
+plt.legend(title_fontsize=8,
            bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
            loc="upper right", ncol=1, mode="expand",
            borderaxespad=0., fontsize=7,
@@ -46,7 +47,7 @@ plt.legend(title='Profiles', title_fontsize=8,
 plt.xlabel('Lithology rock type and geology',
            fontsize=10, fontfamily='sans-serif')
 plt.xticks(np.arange(7), ('C', 'P', 'Vb', 'A', 'Smi', 'Pb', 'M'))
-add_at(ax, "A", loc=2)
+add_at(ax, "A")
 
 # subplot 2
 ax = fig.add_subplot(122)
@@ -54,7 +55,7 @@ sb.stripplot(x='Plates', y='Nr. of observation points',
              hue = 'profile', palette='tab20', data=df2, jitter=True)
 plt.title('Sunda Plate and Philippine Plate',
           fontsize=10, fontfamily='serif')
-plt.legend(title='Profiles', title_fontsize=8,
+plt.legend(title_fontsize=8,
            bbox_to_anchor=(1.01, 0.01, 0.15, 0.99),
            loc="upper right", ncol=1, mode="expand",
            borderaxespad=0., fontsize=7,
@@ -62,7 +63,7 @@ plt.legend(title='Profiles', title_fontsize=8,
 plt.xlabel('Tectonic Plates',
            fontsize=10, fontfamily='sans-serif')
 plt.xticks(np.arange(2), ('Philippine Plate', 'Sunda Plate'))
-add_at(ax, "B", loc=2)
+add_at(ax, "B")
 
 # visualization
 plt.tight_layout()
