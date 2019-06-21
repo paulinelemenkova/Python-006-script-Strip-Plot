@@ -2,6 +2,7 @@
 # coding: utf-8
 import os
 import pandas as pd
+import matplotlib.pylab as pylab
 from matplotlib import pyplot as plt
 import seaborn as sb
 
@@ -25,60 +26,64 @@ df4 = dfM.melt(id_vars=['profile'],
                value_vars=['plate_phill', 'plate_pacif', 'plate_maria', 'plate_carol'],
                var_name='Plates', value_name='Min')
 
+params = {#'figure.figsize': (10, 7),
+    'font.family': 'Palatino',
+        'axes.labelsize': 8,
+            'legend.markerscale': .4,
+                'legend.borderaxespad': -4.,
+                    'legend.labelspacing': .2,
+                        'legend.fontsize': 8,
+                            'legend.fancybox': False,
+                            }
+pylab.rcParams.update(params)
+
 # define figure
 fig = plt.figure(figsize=(10.0, 6.0), dpi=300)
-fig.suptitle('Strip plots for geological parameters, Mariana Trench',
-             fontsize=10, fontweight='bold', x=0.5, y=0.99)
+fig.suptitle('Geological parameters, Mariana Trench',
+             fontsize=11, x=0.5, y=0.98)
 
 # subplot 1
 ax = fig.add_subplot(221)
-sb.stripplot(x='Plates', y='sedim_thick', hue = 'profile',
-             palette='RdGy', data=df1, jitter=True
+sb.stripplot(x='Plates', y='sedim_thick', data=df1,
+             hue = 'profile', palette='RdGy', jitter=True
              )
-plt.title('sediment thickness', fontsize=10, fontfamily='serif')
-plt.legend(bbox_to_anchor=(1.2, .7), loc=1, borderaxespad=-4., ncol=2,
-           markerscale=.4, fancybox=False, shadow=False, mode='expand',
-           title='profiles:', title_fontsize=8, labelspacing=.2
-           )
-plt.subplots_adjust(bottom=0.15,top=0.85, right=0.80)
+plt.title('sediment thickness')
+plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
+           mode='expand', title='profiles:')
 
 # subplot 2
 ax = fig.add_subplot(222)
-sb.stripplot(x='Plates', y='slope_angle', hue = 'profile',
-             palette='PiYG', data=df2, jitter=True
+sb.stripplot(x='Plates', y='slope_angle', data=df2,
+             hue = 'profile', palette='PiYG', jitter=True
              )
-plt.title('slope angle degree', fontsize=10, fontfamily='serif')
-plt.legend(bbox_to_anchor=(1.2, .7), loc=1, borderaxespad=-4., ncol=2,
-           markerscale=.4, fancybox=False, shadow=False, mode='expand',
-           title='profiles:', title_fontsize=8, labelspacing=.2
-           )
-plt.subplots_adjust(bottom=0.15,top=0.85, right=0.80)
+plt.title('slope angle degree')
+plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
+           mode='expand', title='profiles:')
 
 # subplot 3
 ax = fig.add_subplot(223)
-sb.stripplot(x='Plates', y='Mean', hue = 'profile',
-             palette='PRGn', data=df3, jitter=True
+sb.stripplot(x='Plates', y='Mean', data=df3,
+             hue = 'profile', palette='PRGn', jitter=True
              )
-plt.title('mean depth values', fontsize=10, fontfamily='serif')
-plt.legend(bbox_to_anchor=(1.2, .7), loc=1, borderaxespad=-4., ncol=2,
-           markerscale=.4, fancybox=False, shadow=False, mode='expand',
-           title='profiles:', title_fontsize=8, labelspacing=.2
+plt.title('mean depth values')
+plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
+           mode='expand', title='profiles:'
            )
-
-plt.subplots_adjust(bottom=0.15,top=0.85, right=0.80)
 
 # subplot 4
 ax = fig.add_subplot(224)
-sb.stripplot(x='Plates', y='Min', hue = 'profile',
-             palette='RdYlGn', data=df4, jitter=True)
-plt.title('max depth values', fontsize=10, fontfamily='serif')
-plt.legend(bbox_to_anchor=(1.2, .7), loc=1, borderaxespad=-4.,
-           ncol=2, markerscale=.4, fancybox=False, shadow=False, mode='expand',
-           title='profiles:', title_fontsize=8, labelspacing=.2
+sb.stripplot(x='Plates', y='Min', data=df4,
+             hue = 'profile', palette='RdYlGn', jitter=True
+             )
+plt.title('max depth values')
+plt.legend(bbox_to_anchor=(1.2, .7), loc=1, ncol=2,
+           mode='expand', title='profiles:'
            )
-plt.subplots_adjust(bottom=0.15,top=0.85, right=0.80)
-
-# visualizing and saving figure
+plt.subplots_adjust(top=0.85, bottom=0.15,
+                    left=0.10, right=0.90,
+                    hspace=0.25, wspace=0.2
+                    )
+#
 plt.tight_layout()
 fig.savefig('plot_Strip.png', dpi=300)
 plt.show()
